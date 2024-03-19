@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional styling if needed */
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .image-name {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section class="content">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    <div class="container">
+        <h1 class="mt-5">Image Gallery</h1>  <a href="{{ url_for('upload_picture') }}">Upload Picture</a>
+        <div class="row">
+            {% for image in images %}
+                <div class="col-md-4 image-container">
+                    <img src="{{ url_for('download_picture', filename=image) }}" alt="Image">
+                    <p class="image-name">{{ image }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

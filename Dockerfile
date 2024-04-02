@@ -9,7 +9,6 @@ COPY static/ static/
 COPY templates/ templates/
 COPY app.py .
 
-#RUN mkdir /uploads
 VOLUME ["/uploads"]
 
 EXPOSE 5000

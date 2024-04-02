@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-COPY static/ static/
+#COPY static/ static/
 COPY templates/ templates/
 COPY app.py .
 

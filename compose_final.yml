@@ -1,0 +1,31 @@
+name: image_view
+services:
+  image_view_website:
+    container_name: image_view
+    ports:
+      - 5000:5000
+    volumes:
+      - pictures:/uploads/
+    networks:
+      - metrics
+    environment:
+      FLASK_SECRET_KEY: lsdkjffodsfj0wes
+    image: image_view
+
+  prometheus:
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    networks:
+      - metrics
+    image: prom/prometheus
+
+networks:
+  metrics:
+
+volumes:
+  pictures:
+  prometheus-data:

@@ -19,7 +19,6 @@ by_path_counter = metrics.counter(
     labels={'path': lambda: request.path}
 )
 
-
 @app.route('/')
 @by_path_counter
 def view_pictures():  # put application's code here
@@ -27,11 +26,9 @@ def view_pictures():  # put application's code here
     return render_template('view_pictures.html', images=image_files)
     # return 'Hello World!'
 
-
 @app.route("/pictures/<path:filename>")
 def download_picture(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
 
 @app.route("/upload", methods=["GET", "POST"])
 @by_path_counter
@@ -54,11 +51,9 @@ def upload_picture():
     else:
         return render_template("upload.html")
 
-
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 if __name__ == '__main__':
     app.run()

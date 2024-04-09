@@ -3,7 +3,7 @@ services:
   image_view_website:
     container_name: image_view
     ports:
-      - 5000:5000
+      - 5050:5050
     volumes:
       - pictures:/uploads
     environment:
